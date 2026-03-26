@@ -1,0 +1,12 @@
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+crayon_careful\port.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+crayon_careful\port.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+crayon_careful\port.o: ../Inc/FreeRTOSConfig.h
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+crayon_careful\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
