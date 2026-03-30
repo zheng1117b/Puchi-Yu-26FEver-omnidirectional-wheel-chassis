@@ -96,7 +96,10 @@ void set_chassis_motor_speeds(void)
         // 遥控模式：原来的逻辑
 		const fp32 *ins_angle = get_INS_angle_point();
 		int ch4 = (int)(ins_angle[0] * 57.295779513f*50); // yaw 当前角度
-	
+	    /*上面多50倍是因为云台角度单位是度，且 ins_angle[0] 的值较小（通常在 -1 到 1 之间），
+        乘以 57.295779513f 将其转换为度，再乘以 50 恢复到实际的云台角度范围（假设云台角度范围约为 ±180 度）。
+        这个 ch4 就是当前云台的 yaw 角度，单位是度。后续代码会将这个角度与遥控器输入的目标云台角度进行比较，
+        计算误差，并根据误差调整底盘的旋转速度，使底盘能够跟随云台的朝向移动。*/
         while (ch4 > 180) ch4 -= 360;
         while (ch4 < -180) ch4 += 360;
 			
@@ -149,7 +152,7 @@ void set_chassis_motor_speeds(void)
     // 读取当前航向：为了让底盘按云台方向移动，需要把云台坐标速度映射到机体坐标。
     // 计算云台与机体的相对角度（弧度）：yaw_rel = yaw_gimbal - yaw_body
     float yaw_gimbal = DEG2RAD(g_ch4); 		// 云台目标/朝向（弧度）
-    float yaw_body = ins_angle[0]*50;     // 机体当前航向（弧度）
+    float yaw_body = ins_angle[0]*50;     // 机体当前航向（弧度），这个地方的50与上面的54中的50一致，是为了将机体角度转换为弧度。
     float yaw_rel = yaw_gimbal - yaw_body;
 
     // 使用旋转矩阵 R(yaw_rel) 将云台（世界/操作者）坐标下的速度转换到机体坐标：
